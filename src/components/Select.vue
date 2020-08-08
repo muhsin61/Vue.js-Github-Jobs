@@ -22,6 +22,7 @@ export default {
   methods:{
     back(){
       this.$store.state.show = false
+      this.$router.push("/")
     },
     checked(){
       if(this.$store.state.fullTime){

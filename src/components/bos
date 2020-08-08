@@ -7,7 +7,7 @@
       <Select />
       <List /> 
     </div>
-  
+    <router-view></router-view>
   </div>
 </template>
 
@@ -24,8 +24,7 @@ export default {
     List
   },
   created: function () {
-    this.$store.commit("liste","true");
-    this.$router.push('/deneme')
+    this.$store.commit("liste","true")
   }
 }
 </script> 
@@ -41,7 +40,7 @@ export default {
 }
 #h1{
   position: relative;
-  padding-left: 5%;
+  left: 5%;
   font-family: Poppins;
   font-style: normal;
   font-weight: bold;
@@ -65,3 +64,7 @@ export default {
   100% {font-size: 30px;}
 }
 </style>
+
+
+    <router-link to="/deneme">deneme</router-link>
+    <router-view></router-view>
