@@ -1,16 +1,28 @@
 <template>
   <div class="select">
     <div v-if="$store.state.show" class="info">
-      <button @click="back"><span class="material-icons">keyboard_backspace</span>Back to Search</button>
+      <button @click="back">
+        <span class="material-icons">keyboard_backspace</span>Back to Search
+      </button>
       <h1>HOW TO APPLY</h1>
       <p v-html="$store.state.shows.how_to_apply"></p>
     </div>
     <div v-else class="slc">
-      <div class="chck"><input type="checkbox" v-model="$store.state.fullTime" @change="checked()"><span>Full Time</span></div><br>
+      <div class="chck">
+        <input type="checkbox" v-model="$store.state.fullTime" @change="checked()" />
+        <span>Full Time</span>
+      </div>
+      <br />
       <h1>Location</h1>
       <div class="src">
         <span class="material-icons">public</span>
-        <form @submit.prevent="find"><input v-model="$store.state.location"  type="text" placeholder="City, state, zip code or country"></form>
+        <form @submit.prevent="find">
+          <input
+            v-model="$store.state.location"
+            type="text"
+            placeholder="City, state, zip code or country"
+          />
+        </form>
       </div>
     </div>
   </div>
@@ -19,21 +31,21 @@
 <script>
 export default {
   name: "Select",
-  methods:{
-    back(){
-      this.$store.state.show = false
-      this.$router.push("/")
+  methods: {
+    back() {
+      this.$store.state.show = false;
+      this.$router.push("/");
     },
-    checked(){
-      if(this.$store.state.fullTime){
-        console.log("tıklanıd")
-        this.$store.commit("fullTime")
+    checked() {
+      if (this.$store.state.fullTime) {
+        console.log("tıklanıd");
+        this.$store.commit("fullTime");
       }
     },
-    find(){
-      this.$store.commit("find",["",this.$store.state.location])
-    }
-  }
+    find() {
+      this.$store.commit("find", ["", this.$store.state.location]);
+    },
+  },
 };
 </script>
 
@@ -46,7 +58,7 @@ export default {
   height: auto;
   padding-left: 60px;
 }
-.info{
+.info {
   font-family: Poppins;
   font-style: normal;
   text-align: left;
@@ -61,35 +73,35 @@ export default {
   font-weight: 500;
   font-size: 14px;
   line-height: 21px;
-  color: #1E86FF;
+  color: #1e86ff;
   cursor: pointer;
 }
-.info button span{
+.info button span {
   display: inline-block;
   position: relative;
   top: 6px;
 }
-.info h1{
+.info h1 {
   font-weight: bold;
   font-size: 14px;
   line-height: 21px;
   text-transform: uppercase;
-  color: #B9BDCF;
+  color: #b9bdcf;
 }
-.info p{
+.info p {
   font-weight: 500;
   font-size: 14px;
   line-height: 21px;
   color: #334680;
   overflow: hidden;
 }
-.slc{
+.slc {
   position: relative;
   font-family: Poppins;
   font-style: normal;
   padding-left: 20px;
 }
-.chck{
+.chck {
   font-weight: 500;
   font-size: 14px;
   line-height: 21px;
@@ -97,31 +109,31 @@ export default {
   padding: 0;
   margin: -10px;
 }
-.slc h1{
+.slc h1 {
   font-weight: bold;
   font-size: 14px;
   line-height: 21px;
   text-transform: uppercase;
-  color: #B9BDCF;
+  color: #b9bdcf;
 }
-span{
+span {
   position: relative;
   top: -3px;
 }
-span:nth-last-child(2){
+span:nth-last-child(2) {
   position: relative;
   display: inline-block;
   top: 42px;
   left: -5px;
   z-index: 3;
 }
-form{
+form {
   position: relative;
   left: -10px;
   padding-bottom: 20px;
 }
-input[type=text]{
-  background: #FFFFFF;
+input[type="text"] {
+  background: #ffffff;
   position: relative;
   width: 80%;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
@@ -134,9 +146,9 @@ input[type=text]{
   font-weight: normal;
   font-size: 12px;
   line-height: 14px;
-  color: #B9BDCF;
+  color: #b9bdcf;
 }
-input[type=checkbox]{
+input[type="checkbox"] {
   position: relative;
   width: 18px;
   height: 18px;
@@ -146,7 +158,7 @@ input[type=checkbox]{
     width: 100%;
     padding-left: 10px;
   }
-  .slc{
+  .slc {
     padding-left: 10px;
   }
 }

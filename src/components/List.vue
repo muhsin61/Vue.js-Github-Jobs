@@ -32,7 +32,12 @@
     </div>
 
     <div v-else>
-      <div class="show" v-for="item in $store.state.jobs" :key="item.id" @click="deneme(item.id,item.title)">
+      <div
+        class="show"
+        v-for="item in $store.state.jobs"
+        :key="item.id"
+        @click="deneme(item.id,item.title)"
+      >
         <div class="photo">
           <div v-if="item.company_logo" class="chgimg">
             <img :src="item.company_logo" :alt="item.company" />
@@ -72,16 +77,17 @@ export default {
   props: {
     msg: String,
   },
-    watch: {
+  watch: {
     $route() {
       let route = this.$route.path;
-      if(route=="/"){
-        this.$store.state.show = false
+      if (route == "/") {
+        this.$store.state.show = false;
       }
-    }},
+    },
+  },
   methods: {
-    deneme(id,title) {
-      this.$router.push("/" + title.split(" "))
+    deneme(id, title) {
+      this.$router.push("/" + title.split(" "));
       console.log("fid çalıştı:" + id);
       this.$store.state.show = true;
       this.$store.state.key = id;

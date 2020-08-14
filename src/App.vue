@@ -1,33 +1,37 @@
 <template>
   <div id="app">
     <router-view></router-view>
-    <div v-if="$store.state.isLoading"><span class="material-icons ara">search</span></div>
+    <div v-if="$store.state.isLoading">
+      <span class="material-icons ara">search</span>
+    </div>
     <div v-else>
-      <h1 id="h1"><strong>Github</strong> jobs</h1>
+      <h1 id="h1">
+        <strong>Github</strong> jobs
+      </h1>
       <Search />
       <Select />
-      <List /> 
+      <List />
     </div>
   </div>
 </template>
 
 <script>
-import Search from './components/Search.vue'
-import Select from './components/Select.vue'
-import List from './components/List.vue'
+import Search from "./components/Search.vue";
+import Select from "./components/Select.vue";
+import List from "./components/List.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     Search,
     Select,
-    List
+    List,
   },
   created: function () {
-    this.$store.commit("liste","true");
+    this.$store.commit("liste", "true");
     //this.$router.push('/deneme')
-  }
-}
+  },
+};
 </script> 
 
 <style>
@@ -39,7 +43,7 @@ export default {
   margin-top: 60px;
   height: 100%;
 }
-#h1{
+#h1 {
   position: relative;
   padding-left: 5%;
   font-family: Poppins;
@@ -49,7 +53,7 @@ export default {
   line-height: 36px;
   color: #282538;
 }
-.ara{
+.ara {
   position: relative;
   display: flex;
   justify-content: center;
@@ -60,8 +64,14 @@ export default {
   animation-iteration-count: infinite;
 }
 @keyframes example {
-  0% {font-size: 30px;}
-  50% {font-size: 50px;}
-  100% {font-size: 30px;}
+  0% {
+    font-size: 30px;
+  }
+  50% {
+    font-size: 50px;
+  }
+  100% {
+    font-size: 30px;
+  }
 }
 </style>
