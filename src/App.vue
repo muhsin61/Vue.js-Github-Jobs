@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <router-view></router-view>
     <div v-if="$store.state.isLoading"><span class="material-icons ara">search</span></div>
     <div v-else>
       <h1 id="h1"><strong>Github</strong> jobs</h1>
@@ -7,7 +8,6 @@
       <Select />
       <List /> 
     </div>
-  
   </div>
 </template>
 
@@ -25,7 +25,7 @@ export default {
   },
   created: function () {
     this.$store.commit("liste","true");
-    this.$router.push('/deneme')
+    //this.$router.push('/deneme')
   }
 }
 </script> 

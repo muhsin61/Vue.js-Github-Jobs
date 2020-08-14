@@ -4,12 +4,12 @@
       <h1>{{ $store.state.shows.title }}</h1>
       <span class="times up">{{ $store.state.shows.type }}</span>
       <p class="icons" style="text-align:left">
-        <span class="material-icons">notifications_none</span
-        >{{
-          Math.ceil(
-            Math.abs(new Date() - new Date($store.state.shows.created_at)) /
-              (1000 * 60 * 60 * 24)
-          )
+        <span class="material-icons">notifications_none</span>
+        {{
+        Math.ceil(
+        Math.abs(new Date() - new Date($store.state.shows.created_at)) /
+        (1000 * 60 * 60 * 24)
+        )
         }}
         days ago
       </p>
@@ -23,8 +23,8 @@
         <div class="ingInfo">
           <h3>{{ $store.state.shows.company }}</h3>
           <p class="icons" style="text-align:left">
-            <span class="material-icons">public</span
-            >{{ $store.state.shows.location }}
+            <span class="material-icons">public</span>
+            {{ $store.state.shows.location }}
           </p>
         </div>
         <div class="icerik" v-html="$store.state.shows.description"></div>
@@ -32,12 +32,7 @@
     </div>
 
     <div v-else>
-      <div
-        class="show"
-        v-for="item in $store.state.jobs"
-        :key="item.id"
-        @click="deneme(item.id)"
-      >
+      <div class="show" v-for="item in $store.state.jobs" :key="item.id" @click="deneme(item.id,item.title)">
         <div class="photo">
           <div v-if="item.company_logo" class="chgimg">
             <img :src="item.company_logo" :alt="item.company" />
@@ -49,25 +44,23 @@
           <p class="title">{{ item.title }}</p>
           <p class="times">{{ item.type }}</p>
           <p class="icons">
-            <span class="material-icons">public</span>{{ item.location }}
-            <span class="material-icons">notifications_none</span
-            >{{
-              Math.ceil(
-                Math.abs(new Date() - new Date(item.created_at)) /
-                  (1000 * 60 * 60 * 24)
-              )
+            <span class="material-icons">public</span>
+            {{ item.location }}
+            <span class="material-icons">notifications_none</span>
+            {{
+            Math.ceil(
+            Math.abs(new Date() - new Date(item.created_at)) /
+            (1000 * 60 * 60 * 24)
+            )
             }}
             days ago
           </p>
         </div>
       </div>
       <div class="pages">
-        <span @click="page(false)" class="material-icons"
-          >keyboard_arrow_left</span
-        ><span>{{ $store.state.say + 1 }}</span
-        ><span @click="page(true)" class="material-icons"
-          >keyboard_arrow_right</span
-        >
+        <span @click="page(false)" class="material-icons">keyboard_arrow_left</span>
+        <span>{{ $store.state.say + 1 }}</span>
+        <span @click="page(true)" class="material-icons">keyboard_arrow_right</span>
       </div>
     </div>
   </div>
@@ -79,9 +72,16 @@ export default {
   props: {
     msg: String,
   },
+    watch: {
+    $route() {
+      let route = this.$route.path;
+      if(route=="/"){
+        this.$store.state.show = false
+      }
+    }},
   methods: {
-    deneme(id) {
-      //
+    deneme(id,title) {
+      this.$router.push("/" + title.split(" "))
       console.log("fid çalıştı:" + id);
       this.$store.state.show = true;
       this.$store.state.key = id;
