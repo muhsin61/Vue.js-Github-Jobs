@@ -177,7 +177,10 @@ export default {
 }
 .miniImg h4 {
   position: relative;
-  display: inline-block !important;
+  font-size: 15px;
+  display:flex!important;
+  justify-content: center;
+  align-items: center;
   width: 70px !important;
   height: 70px !important;
   background: #f2f2f2 !important;
