@@ -46,6 +46,9 @@ input{
   height: 51px;
   border: none;
 }
+input:focus{
+  outline:none;
+}
 .mask{
   position: relative;
   top: 6px;
@@ -63,6 +66,7 @@ input[type=text]{
   line-height: 14px;
   color: #6b6d75;
   padding-top: 3px;
+  font-size: 15px;
 }
 input[type=submit]{
   border: none;
