@@ -29,7 +29,6 @@ export default {
   },
   created: function () {
     this.$store.commit("liste", "true");
-    //this.$router.push('/deneme')
   },
 };
 </script> 

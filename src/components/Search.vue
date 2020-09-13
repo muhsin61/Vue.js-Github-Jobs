@@ -14,8 +14,7 @@ export default {
   name: "Search",
   methods:{
     find(){
-      console.log("fid çalıştı.")
-      this.$store.commit("find",[this.$store.state.finds,""])
+      this.$store.commit("find",[this.$store.state.finds,""]);
     }
   }
 };

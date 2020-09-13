@@ -38,7 +38,6 @@ export default {
     },
     checked() {
       if (this.$store.state.fullTime) {
-        console.log("tıklanıd");
         this.$store.commit("fullTime");
       }
     },

@@ -27,7 +27,7 @@
             {{ $store.state.shows.location }}
           </p>
         </div>
-        <div class="icerik" v-html="$store.state.shows.description"></div>
+        <div class="pagesHtml" v-html="$store.state.shows.description"></div>
       </div>
     </div>
 
@@ -36,7 +36,7 @@
         class="show"
         v-for="item in $store.state.jobs"
         :key="item.id"
-        @click="deneme(item.id,item.title)"
+        @click="showJob(item.id,item.title)"
       >
         <div class="photo">
           <div v-if="item.company_logo" class="chgimg">
@@ -64,7 +64,7 @@
       </div>
       <div class="pages">
         <span @click="page(false)" class="material-icons">keyboard_arrow_left</span>
-        <span>{{ $store.state.say + 1 }}</span>
+        <span>{{ $store.state.count + 1 }}</span>
         <span @click="page(true)" class="material-icons">keyboard_arrow_right</span>
       </div>
     </div>
@@ -74,9 +74,6 @@
 <script>
 export default {
   name: "List",
-  props: {
-    msg: String,
-  },
   watch: {
     $route() {
       let route = this.$route.path;
@@ -86,15 +83,14 @@ export default {
     },
   },
   methods: {
-    deneme(id, title) {
-      this.$router.push("/" + title.split(" "));
-      console.log("fid çalıştı:" + id);
+    showJob(id, title) {
+      this.$router.push("/" + title.split(" " + "," + "%"));
       this.$store.state.show = true;
       this.$store.state.key = id;
       this.$store.commit("show", id);
 
-      let tarih = new Date(this.$store.state.jobs[0].created_at);
-      let diffTime = Math.abs(new Date() - tarih);
+      let jobDate = new Date(this.$store.state.jobs[0].created_at);
+      let diffTime = Math.abs(new Date() - jobDate);
       const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
       console.log(diffTime + " milliseconds");
       console.log(diffDays + " days");
@@ -105,16 +101,14 @@ export default {
     page(up) {
       console.log(up);
       if (up) {
-        console.log("say: " + this.$store.state.say);
-        if (this.$store.state.say < this.$store.state.find.length / 5 - 1) {
-          this.$store.state.say += 1;
+        if (this.$store.state.count < this.$store.state.find.length / 5 - 1) {
+          this.$store.state.count += 1;
           this.$store.commit("page", up);
         }
       } else {
-        console.log("say: " + this.$store.state.say);
-        if (this.$store.state.say > 0) {
+        if (this.$store.state.count > 0) {
           this.$store.commit("page", up);
-          this.$store.state.say -= 1;
+          this.$store.state.count -= 1;
         }
       }
     },
@@ -133,7 +127,7 @@ export default {
   width: 70%;
   height: 200px;
 }
-.icerik {
+.pagesHtml {
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
