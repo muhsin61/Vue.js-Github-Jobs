@@ -7,7 +7,7 @@ export const store = new Vuex.Store({
   state: {
     find: Object,
     jobs: Object,
-    find2: Object,
+    tempFind: Object,
     shows: Array,
     isLoading: false,
     fullTime: false,
@@ -68,9 +68,9 @@ export const store = new Vuex.Store({
       }
     },
     fullTime(state) {
-      state.find2 = state.find;
+      state.tempFind = state.find;
       state.find = [];
-      state.find2.forEach(element => {
+      state.tempFind.forEach(element => {
         if (element.type == "Full Time") { state.find.push(element) }
       });
     }
